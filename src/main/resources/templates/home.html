@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="home-page">
+<div th:replace="~{header :: header}"></div>
+
+<main class="home-container">
+    <section class="update_box">
+        <h2>🔔 1.1 ver</h2>
+        <p>⏳ 이번 업데이트는 댓글 기능이 도입될 예정입니다.</p>
+        <p>⏳ 미국시간 설정... 변경 .. . 중 ..</p>
+        <p><span class="badge">NEW</span>comment 기능 (댓글 기능) 업데이트</p>
+
+        <p><span class="badge">NEW</span>게시글 목록 UI 업그레이드</p>
+        <p><span class="badge">NEW</span>번호, 제목, 글쓴이, 작성일 추가</p>
+        <p>페이징 기능 도입!</p>
+        <p>DB 서버 시간 확인 후 한국시간으로 조치</p>
+        <p>게시판 최신순 정렬 등록</p>
+        <p>업데이트 UI 등록</p> <!--🆕-->
+
+        <p>공지사항 -- 댓글은 관리자만이 삭제 가능, 신중히 적어주세요</p>
+    </section>
+
+    <section class="welcome-box">
+    <h1>MyBoard</h1>
+    <h2 style="margin-top:2rem;">✨ 환영합니다 ✨</h2>
+    <p>유하의 게시판 프로젝트에 오신 걸 환영합니다!</p>
+    </section>
+
+    <section class="latest-posts">
+        <h2>📝 최신 글</h2>
+        <ul>
+            <li><a href="#">1. 게시판 기능 개선 예정</a> <span>2025-02-15</span></li>
+            <li><a href="#">2. UI 업데이트 완료</a> <span>2025-02-14</span></li>
+        </ul>
+    </section>
+</main>
+
+<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

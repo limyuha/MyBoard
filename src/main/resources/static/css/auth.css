@@ -1,0 +1,256 @@
+/* ===========================
+   로그인 페이지 전용 (업데이트)
+   =========================== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  background: #f0f4ff;
+  padding: 2rem;
+}
+
+.login-box {
+  background: #ffffff; /* ✅ 흰색 카드 배경 */
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  color: #111;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* 제목 */
+.login-box h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+}
+
+/* 폼 그룹 */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  background: linear-gradient(90deg, #e0f2fe, #dbeafe); /* ✅ 그라데이션 */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(59,130,246,0.4), inset 0 2px 4px rgba(0,0,0,0.08);
+  transform: scale(1.01);
+}
+
+/* 버튼 */
+.form-actions {
+  margin-top: 1rem;
+}
+
+.btn.primary,
+.btn.google {
+  display: flex;                  /* ✅ 둘 다 동일하게 flex 박스 */
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 48px;                   /* ✅ 고정 높이 통일 */
+  padding: 0;                     /* ✅ 높이 안 깨지게 padding 제거 */
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* 파란 로그인 버튼 */
+.btn.primary {
+  background: linear-gradient(90deg, #2563eb, #1e3a8a);
+  color: white;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.btn.google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;                 /* 아이콘과 텍스트 간격 */
+  width: 100%;
+  height: 48px;                /* 로그인 버튼과 동일 높이 */
+  border-radius: 8px;
+  background: white;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  transition: background 0.3s;
+}
+
+.btn.google:hover {
+  background: #e72e2e;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===========================
+   회원가입 페이지 전용
+   =========================== */
+.join-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  background: #f0f4ff;
+  padding: 2rem;
+}
+
+.join-box {
+  background: #ffffff; /* ✅ 흰색 카드 배경 */
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  color: #111;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.join-box h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+}
+
+/* 폼 공통 */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  background: linear-gradient(90deg, #e0f2fe, #dbeafe); /* ✅ 인풋 그라데이션 */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(59,130,246,0.4), inset 0 2px 4px rgba(0,0,0,0.08);
+  transform: scale(1.01);
+}
+
+/* 버튼 */
+.form-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn.primary,
+.btn.secondary,
+.btn.google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* 파란 가입 버튼 */
+.btn.primary {
+  background: linear-gradient(90deg, #2563eb, #1e3a8a);
+  color: white;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* 취소 버튼 */
+.btn.secondary {
+  background: #f3f4f6;
+  color: #333;
+  border: 1px solid #ddd;
+  transition: background 0.2s;
+}
+.btn.secondary:hover {
+  background: #e5e7eb;
+}
+
+/* 구글 계정 버튼 */
+.oauth-box {
+  margin-top: 1rem;
+}
+.btn.google {
+  gap: 0.6rem;
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.btn.google:hover {
+  background: #e72e2e;
+}
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+

@@ -1,0 +1,325 @@
+/* ===========================
+   메시지 박스
+   =========================== */
+
+#msg-box {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: none; /* 기본은 숨김 */
+}
+
+#msg-box.success {
+  background-color: #e6ffed;
+  color: #2d7a32;
+  border: 1px solid #2d7a32;
+}
+
+#msg-box.error {
+  background-color: #ffe6e6;
+  color: #b32d2d;
+  border: 1px solid #b32d2d;
+}
+
+/* ===========================
+   ✅ 공통 카드 레이아웃 (상세/작성 박스만)
+   =========================== */
+.article-box,
+.form-box {
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 900px;
+    box-sizing: border-box;
+}
+
+/* 제목 스타일 */
+.article-title,
+.form-box h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #1e3a8a;
+}
+
+/* 본문 */
+.article-content {
+    margin: 1.2rem 0;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #444;
+
+  word-wrap: break-word;     /* 단어가 너무 길면 강제로 줄바꿈 */
+  word-break: break-word;    /* 줄바꿈 강제 */
+  white-space: pre-wrap;     /* 공백/줄바꿈 유지 + 자동 줄바꿈 */
+}
+
+/* 글 작성/수정 form */
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { font-weight: 600; margin-bottom: 0.5rem; display: block; }
+input[type="text"], textarea {
+    width: 100%; padding: 0.8rem; border: 1px solid #ddd;
+    border-radius: 8px; font-size: 1rem; background: #fafafa;
+    box-sizing: border-box;
+}
+textarea { resize: vertical; }
+
+.form-actions {
+    display: flex; justify-content: flex-end;
+    gap: 0.5rem; margin-top: 1rem;
+}
+
+/* ===========================
+   📌 Article List Page 전용
+   body: <body class="article-list-page">
+   =========================== */
+
+/* 페이지 제목 */
+.article-list-page h1 {
+    /* text-align: center;       가운데 정렬 */
+    font-size: 2rem;          /* 글자 크기 키우기 (필요시 2.2rem 정도로 더 키워도 OK) */
+    font-weight: 700;         /* 두껍게 */
+    letter-spacing: 1px;          /* 글자 간격 살짝 넓힘 */
+    color: #ffffff;           /* 흰색으로 대비 */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 가독성 강조 */
+}
+
+/* 게시판 전체 영역 */
+.article-board {
+  /*display: flex;
+  flex-direction: column;    위 → 아래 정렬
+  justify-content: space-between;  리스트 위 / 페이징 아래
+
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ffffff, #f8faff);
+  border-radius: 12px;
+  margin: 1.5rem auto;
+  max-width: 1000px;
+  height: 80%;*/
+
+    background: linear-gradient(to bottom, #ffffff, #f8faff);
+    border-radius: 12px;
+    margin: 1.5rem auto 0 auto; /* 아래쪽 여백 제거 */
+    max-width: 1000px;
+    overflow: hidden;
+}
+
+.article-actions-primary-box {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  margin-bottom: 0.75rem;
+}
+
+.btn.primary {
+  position: relative;
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+  z-index: 1;
+}
+
+/* 바깥쪽 테두리 */
+.btn.primary::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* 버튼 크기랑 똑같이 */
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2563eb, #1e3a8a);
+  z-index: -2;
+}
+
+/* 안쪽 흰 배경 */
+.btn.primary::after {
+  content: "";
+  position: absolute;
+  inset: 3px; /* 딱 테두리만큼만 안쪽 */
+  border-radius: 8px;
+  background: #fff;
+  z-index: -1;
+}
+
+/* 호버 시 */
+.btn.primary:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border: none;
+}
+
+.btn.primary:hover::before {
+  opacity: 0; /* 테두리 숨김 */
+}
+
+.btn.primary:hover::after {
+  inset: 0; /* 전체 배경으로 확장 */
+  border-radius: 10px;
+  background: linear-gradient(90deg, #1e3a8a, #1e40af);
+}
+
+/* ===========================
+   📌 헤더 (번호 / 제목 / 글쓴이 / 작성일)
+   =========================== */
+.article-header {
+  background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+  color: #fff;
+  font-weight: bold;
+}
+
+.article-header .col {
+  text-align: center;
+}
+.article-header .title {
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* ===========================
+   📌 목록
+   =========================== */
+.article-list {
+   flex-grow: 1;   /* 공간 차지 */
+   margin-bottom: 1rem;
+}
+
+.article-row {
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.article-row:last-child {
+  border-bottom: none;
+}
+
+/* 컬럼 공통 */
+.article-row .col {
+  text-align: center;
+}
+.article-row .title {
+  text-align: left;
+}
+
+/* grid 정의 (열 고정 + 가변 조합) */
+.article-header,
+.article-row {
+  display: grid;
+  grid-template-columns: 80px minmax(200px, 1fr) 150px 80px 160px;
+  /* 번호(80px) + 제목(최소200px ~ 가변) + 글쓴이(150px) + 조회수(80px) + 작성일(160px) */
+  align-items: center;
+  padding: 12px 16px;
+}
+
+/* 제목 칸 */
+.title-cell {
+  overflow: hidden;   /* 부모 단에서 잘리도록 */
+}
+
+/* 제목 내부 a 태그 */
+.title-cell a {
+  display: block;        /* 블록화 → 부모 셀 너비 다 씀 */
+  width: 100%;           /* 제목 칸 전체 클릭 가능 */
+  max-width: 100%;       /* 부모 grid 셀 너비에 맞춤 */
+  white-space: nowrap;   /* 줄바꿈 X */
+  overflow: hidden;      /* 넘치면 숨김 */
+  text-overflow: ellipsis; /* ... 처리 */
+
+  padding: 6px 8px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* 호버 효과 */
+.title-cell a:hover {
+  background: linear-gradient(90deg, #2563eb, #1e3a8a); /* 진한 블루톤 */
+}
+
+
+/* 날짜 */
+.article-date {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* ===========================
+   📌 글이 없을 때 메시지
+   =========================== */
+.empty-message {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+    margin-top: 1rem;
+    border: 3px dashed #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+/* ===========================
+   📌 페이지네이션
+   =========================== */
+/* 페이지네이션 (board 밖, container 안) */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 16px 0;
+  max-width: 1000px;   /* 📌 board와 같은 너비 */
+  margin: 0 auto;      /* 가운데 정렬 */
+}
+
+.page-btn {
+    padding: 6px 12px;
+    border: 2px solid transparent;   /* 투명한 기본 테두리 */
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover {
+  border-image: linear-gradient(90deg, #3b82f6, #2563eb) 1;
+  border-image-slice: 1;
+  color: #2563eb; /* 글씨색만 블루 */
+}
+
+.page-btn.active {
+    background: linear-gradient(90deg, #2563eb, #1e3a8a);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+}
+
+
+/* 상세 페이지(article-view) 버튼 */
+.article-detail-page .article-actions {
+  display: flex;
+  justify-content: space-between; /* 왼쪽: 목록 / 오른쪽: 수정+삭제 */
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+/* 왼쪽(목록), 오른쪽(수정+삭제) 그룹 */
+.article-detail-page .article-actions-left {
+  flex: 1;
+}
+
+.article-detail-page .article-actions-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
