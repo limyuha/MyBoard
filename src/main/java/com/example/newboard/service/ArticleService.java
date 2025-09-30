@@ -8,6 +8,7 @@ import com.example.newboard.web.dto.ArticleCreateRequest;
 import com.example.newboard.web.dto.ArticleResponse;
 import com.example.newboard.web.dto.ArticleUpdateRequest;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,9 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -57,12 +61,29 @@ public class ArticleService {
                 .orElseThrow(() -> new ArticleNotFoundException(id));
     }
 
-    // 조회 + 조회수 증가 (뷰용) -> 엔티티 반환
+    // 조회수 중복 방지 확인을 위한 코드
     @Transactional
-    public Article viewArticle(Long id) {
-        articleRepository.increaseViewCount(id);
-        return findById(id);  // 증가 후 findById로 최신 상태 조회
+    public void checkAndIncreaseViewCount(Long articleId, HttpSession session) {
+        @SuppressWarnings("unchecked")
+        Set<Long> viewedArticles = (Set<Long>) session.getAttribute("viewedArticles");
+
+        if (viewedArticles == null) {
+            viewedArticles = new HashSet<>();
+        }
+
+        if (!viewedArticles.contains(articleId)) {
+            articleRepository.increaseViewCount(articleId);   // 조회수 증가
+            viewedArticles.add(articleId);   // 세션에 기록
+            session.setAttribute("viewedArticles", viewedArticles);
+        }
     }
+
+    // 조회 + 조회수 증가 (뷰용) -> 엔티티 반환
+//    @Transactional
+//    public Article incrementViewCount(Long id) {
+//        articleRepository.increaseViewCount(id);
+//        return findById(id);  // 증가 후 findById로 최신 상태 조회
+//    }
 
     @Transactional
     public ArticleResponse update(Long id, String email, ArticleUpdateRequest req){

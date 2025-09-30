@@ -2,8 +2,7 @@ package com.example.newboard.web.view;
 
 import com.example.newboard.domain.Article;
 import com.example.newboard.service.ArticleService;
-import com.example.newboard.web.dto.ArticleCreateRequest;
-import com.example.newboard.web.dto.ArticleUpdateRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor  // final로 필드에 선언되어 있으면 객체로 생성하지 않아도 자동으로 쓸 수 있게 해줌
@@ -37,8 +35,12 @@ public class ArticleViewController {
     public String createForm() { return "article-form"; }
 
     @GetMapping("/articles/{id}")
-    public String detail(@PathVariable Long id, Model model, Authentication auth){
-        var article = articleService.viewArticle(id);
+    public String detail(@PathVariable Long id, Model model, Authentication auth, HttpSession session){
+        // 조회수 증가 여부 확인 (세션 기반)
+        articleService.checkAndIncreaseViewCount(id, session);
+
+        // 게시글 조회 (증가 여부는 위에서 처리했으므로 단순 조회만)
+        var article = articleService.findById(id);
 
         model.addAttribute("article", article);
         boolean isOwner = auth != null && article.getAuthor().getEmail().equals(auth.getName());
